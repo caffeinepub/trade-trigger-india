@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* TTI Dark Financial Theme - OKLCH raw L C H values */
+    --background: 0.07 0.008 265;
+    --foreground: 0.95 0.01 90;
+    --card: 0.1 0.01 265;
+    --card-foreground: 0.95 0.01 90;
+    --popover: 0.1 0.01 265;
+    --popover-foreground: 0.95 0.01 90;
+    --primary: 0.72 0.18 56;
+    --primary-foreground: 0.07 0.008 265;
+    --secondary: 0.14 0.01 265;
+    --secondary-foreground: 0.95 0.01 90;
+    --muted: 0.14 0.01 265;
+    --muted-foreground: 0.55 0.01 90;
+    --accent: 0.72 0.18 56;
+    --accent-foreground: 0.07 0.008 265;
+    --destructive: 0.55 0.22 27;
+    --destructive-foreground: 0.95 0.01 90;
+    --border: 0.72 0.18 56 / 20%;
+    --input: 0.14 0.01 265;
+    --ring: 0.72 0.18 56;
+    --chart-1: 0.72 0.18 56;
+    --chart-2: 0.55 0.22 27;
+    --chart-3: 0.65 0.15 145;
+    --chart-4: 0.6 0.18 240;
+    --chart-5: 0.75 0.12 200;
+    --sidebar: 0.1 0.01 265;
+    --sidebar-foreground: 0.95 0.01 90;
+    --sidebar-primary: 0.72 0.18 56;
+    --sidebar-primary-foreground: 0.07 0.008 265;
+    --sidebar-accent: 0.14 0.01 265;
+    --sidebar-accent-foreground: 0.95 0.01 90;
+    --sidebar-border: 0.72 0.18 56 / 20%;
+    --sidebar-ring: 0.72 0.18 56;
+
+    /* Brand custom properties */
+    --tti-bg: #0b0b0f;
+    --tti-gold: #d4af37;
+    --tti-gold-bright: #f0d060;
+    --tti-red: #c0392b;
+    --tti-red-glow: #ff2d2d;
+    --tti-glass-bg: rgba(15, 15, 20, 0.7);
+    --tti-glass-border: rgba(212, 175, 55, 0.2);
+    --tti-text: #f0f0f0;
+    --tti-text-muted: #a0a0a0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--tti-bg);
+    color: var(--tti-text);
+    font-family: 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b0b0f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--tti-gold), var(--tti-red));
+    border-radius: 3px;
+  }
+}
+
+/* ───────────────── Global ambient glow ───────────────── */
+.ambient-glow-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(192, 57, 43, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30vh;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ───────────────── Glassmorphism base ───────────────── */
+.glass-panel {
+  background: var(--tti-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--tti-glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 57, 43, 0.08);
+}
+
+.glass-panel:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+/* ───────────────── Gold text gradient ───────────────── */
+.gold-text {
+  background: linear-gradient(135deg, var(--tti-gold) 0%, var(--tti-gold-bright) 50%, var(--tti-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ───────────────── Red glow button ───────────────── */
+.btn-red-glow {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: white;
+  border: 1px solid rgba(255, 45, 45, 0.4);
+  box-shadow: 0 0 20px rgba(255, 45, 45, 0.3), 0 4px 15px rgba(192, 57, 43, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-red-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 45, 45, 0.5), 0 6px 20px rgba(192, 57, 43, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ───────────────── Gold glow button ───────────────── */
+.btn-gold-glow {
+  background: linear-gradient(135deg, #b8960c, #d4af37, #f0d060);
+  color: #0b0b0f;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25), 0 4px 15px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.btn-gold-glow:hover {
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.5), 0 6px 20px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ───────────────── Pulse animation ───────────────── */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 45, 45, 0.4), 0 4px 15px rgba(192, 57, 43, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(255, 45, 45, 0.7), 0 6px 25px rgba(192, 57, 43, 0.5); }
+}
+
+.pulse-red {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.7)); }
+}
+
+.pulse-gold {
+  animation: pulse-gold 2.5s ease-in-out infinite;
+}
+
+/* ───────────────── Float animation ───────────────── */
+@keyframes float-up-down {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.float-anim {
+  animation: float-up-down 4s ease-in-out infinite;
+}
+
+/* ───────────────── Fade in up ───────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ───────────────── Section title underline ───────────────── */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tti-red), var(--tti-gold));
+  margin: 0 auto;
+  margin-top: 0.75rem;
+  border-radius: 2px;
+}
+
+/* ───────────────── Card tilt ───────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+/* ───────────────── Live dot indicator ───────────────── */
+@keyframes blink-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff2d2d;
+  border-radius: 50%;
+  display: inline-block;
+  animation: blink-live 1.2s ease-in-out infinite;
+  box-shadow: 0 0 6px #ff2d2d;
+}
+
+/* ───────────────── Candlestick canvas ───────────────── */
+.hero-canvas {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ───────────────── Telegram icon glow ───────────────── */
+@keyframes telegram-glow {
+  0%, 100% { color: var(--tti-gold); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5)); }
+  50% { color: var(--tti-gold-bright); filter: drop-shadow(0 0 18px rgba(240, 208, 96, 0.8)); }
+}
+
+.telegram-glow {
+  animation: telegram-glow 2.5s ease-in-out infinite;
+}
+
+/* ───────────────── Navbar glass ───────────────── */
+.navbar-glass {
+  background: rgba(11, 11, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* ───────────────── Hero heading ───────────────── */
+.hero-heading {
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* ───────────────── Shimmer on gold ───────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #b8960c 0%, #d4af37 30%, #f0d060 50%, #d4af37 70%, #b8960c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ───────────────── Section spacing ───────────────── */
+.section-padding {
+  padding: 5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 3rem;
+  }
+}
+
+/* ───────────────── Particle canvas bg ───────────────── */
+.particle-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* ───────────────── Intersection observer visible ───────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───────────────── Chart container ───────────────── */
+.tradingview-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
